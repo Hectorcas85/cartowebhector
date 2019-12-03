@@ -33,11 +33,28 @@ Los datos contenidos fueron consultados directamente de la página del MinCIT (M
 
 ![img1](IMAGENES/DATOS_ABIERTOS_ESRI.JPG)
 
-3. Lo incorrporamos en el proyecto de Qgis llamado mapa 1.qgs
+3. Se crea un nuevo campo para comparar las exportaciones hechas entre el 2012 y 2014 por departamento
+
+![img1](IMAGENES/NUEVO_CAMPO.JPG)
+
+4. Del campo creado se define con la expresión
+
+![img1](IMAGENES/EXPRESION.JPG)
+
+5. Generamos la simbologia adecuada para la representacion.
+
+![img1](IMAGENES/CLASIFICACION.JPG)
+
+6. Acedemos a la cuenta creada, continuamente creamos la base de datos.
+
+![img1](IMAGENES/QGISCLOUD_CUENTA.JPG)
+
+7. Cargamos los datos vectoriales presente en el proyecto del Qgis
+
+![img1](IMAGENES/QSUBIR_QGISCLOUD.JPG)
 
 
 
-4. Se crea un nuevo campo para comparar las exportaciones hechas entre el 2012 y 2014 por departamento
 
 ### Urls
 
