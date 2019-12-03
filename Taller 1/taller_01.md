@@ -27,7 +27,7 @@ Los datos contenidos fueron consultados directamente de la página del MinCIT (M
 
 2. En Qgis se instala el complemento Qgis2web
 
-![img1](Taller 1/IMAGENES/QGISCLOUD.jpg)
+![img1](IMAGENES/QGISCLOUD.jpg)
 
 2. Se descarga la informacion de Esri Datos Abiertos 
 
