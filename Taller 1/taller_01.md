@@ -31,7 +31,7 @@ Los datos contenidos fueron consultados directamente de la página del MinCIT (M
 
 2. Se descarga la informacion de Esri Datos Abiertos 
 
-![img2](IMAGENES/DATOS ABIERTOS ESRI.JPG)
+![img1](IMAGENES/DATOS_ABIERTOS_ESRI.JPG)
 
 3. Lo incorrporamos en el proyecto de Qgis llamado mapa 1.qgs
 
