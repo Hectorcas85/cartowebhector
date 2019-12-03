@@ -1,4 +1,3 @@
-<<<<<<< HEAD:Taller_1/taller_01.md
 ## Cuál es el problema a tratar?
 
 Las exportaciones son el envío de un producto o servicio a otra parte del mundo fuera de las fronteras nacionales, con el propósito de venderlo o intercambiarlo, es decir, con propósitos comerciales.
@@ -114,4 +113,3 @@ Los datos contenidos fueron consultados directamente de la página del MinCIT (M
 * mapa 1 WMS: https://wms.qgiscloud.com/hectorcas85/mapa1/
 * mapa 2: https://qgiscloud.com/hectorcas85/mapa2/
 * mapa 2 WMS: https://wms.qgiscloud.com/hectorcas85/mapa2/
->>>>>>> d15300f1623fb9a741c22d32adb1c887c6631423:Taller 1/taller_01.md
