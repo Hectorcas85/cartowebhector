@@ -27,13 +27,13 @@ Los datos contenidos fueron consultados directamente de la página del MinCIT (M
 
 2. En Qgis se instala el complemento Qgis2web
 
-![img1](IMAGENES/QGISCLOUD.jpg)
+![img1](IMAGENES/QGISCLOUD.JPG)
 
 2. Se descarga la informacion de Esri Datos Abiertos 
 
-![img1](IMAGENES/DATOS ABIERTOS ESRI.jpg)
+![img2](IMAGENES/DATOS ABIERTOS ESRI.JPG)
 
-3. Lo incorrporamos en el proyecto de Qgis llamado Taller1_Expor_Import.qgs
+3. Lo incorrporamos en el proyecto de Qgis llamado mapa 1.qgs
 
 
 
