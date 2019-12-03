@@ -6,7 +6,7 @@ Las exportaciones dentro de un nivel macroeconómico generan un resultado positi
 
 ## Por qué un mapa ayuda a resolverlo?
 
-Para tener una vision global y enfocarse en productores secctorizados regionales los datos presentados son información sobre el comportamiento del comercio exterior, enfocados en exportaciones para los años de 2012 y 2014 por departamento en Colombia, se visualizara en porcentaje el incremento o detrimento en las exportaciones segun el ultimo año. Las cifras están expresadas en miles de dólares.
+Para tener una vision global y enfocarse en productores secctorizados regionales los datos presentados son información sobre el comportamiento del comercio exterior, enfocados en exportaciones para los años de 2012 y 2014 por departamento en Colombia, se visualizara en porcentaje el incremento o detrimento en las exportaciones segun el ultimo año definida en el campo con nombre Exp12_14.
 
 En el __mapa 1__ se visualiza una mejor representacion dando a conocer el porcentage de perdida o ganancia segun el año de comparacion perteneciente al 2014, con una distribucion uniforme con respecto al __mapa 2__.
 
@@ -49,10 +49,13 @@ Los datos contenidos fueron consultados directamente de la página del MinCIT (M
 
 ![img1](IMAGENES/QGISCLOUD_CUENTA.JPG)
 
-7. Cargamos los datos vectoriales presente en el proyecto del Qgis
+7. Cargamos los datos vectoriales presente en el proyecto del Qgis al servidor QgisCloud
 
-![img1](IMAGENES/QSUBIR_QGISCLOUD.JPG)
+![img1](IMAGENES/SUBIR_QGISCLOUD.JPG)
 
+8. Como ultimo paso publicamos el proyecto con la representacion simbolica definida en el proyecto
+
+![img1](IMAGENES/CONFIGURACION_QGISCLOUD.JPG)
 
 
 
