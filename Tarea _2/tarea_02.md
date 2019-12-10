@@ -15,13 +15,17 @@ La incorporacion de servicios WMTS ya que son muchos puntos identificados a lo l
 
 El ICANH, mediante el Grupo de Arqueología y sus otras dependencias asesora a las autoridades locales, regionales, distritales y municipales en la difícil labor de preservar los yacimientos arqueológicos y los bienes muebles extraídos de esos sitios y que conforman el Patrimonio Arqueológico de la Nación
 
-__Atributos Tabla__
+__Atributos Tabla - u2_sitarq_anla_wgs84__
 
 ![img2](IMAGENES/tabla_sitios_arq.JPG)
 
 Fuente: https://www.icanh.gov.co/
 
 ## Descripción del procesamiento realizado con postgis (Incluir los sqls)
+
+__Subimos las capas con el administrador de bases de datos que tiene el Qgis.__
+
+![img2](IMAGENES/subir capas a postgres.JPG)
 
 Se crea una capa o tabla espacial en postgis con el siguiente SQL para saber cuántos hallazgos se encontraron en cada departamento:
 
@@ -35,12 +39,257 @@ group by departamento) unir
 join u2_departamentos
 on unir.departamento = u2_departamentos.nombre);__
 
-Se genera un indice espacial a la tabla creada:
+Se genera un indice espacial a todas las tablas creadas, en este caso el que se acaba de crear:
 
 CREATE INDEX sidx_u2deptarq_geom 
 ON u2_dept_arq USING GIST (geom);
 
 ## Descripción de la forma en que creó la simbología (incluir los sld's y css)
+1. En Qgis definimos la simbologia del shape, ingresando a propiedades
+
+![img2](IMAGENES/simbologia_qgis.JPG)
+
+2. Al estar ya configurado guardamos el estilo como SLD
+
+![img2](IMAGENES/guardar_estilo.JPG)
+
+![img2](IMAGENES/Estilo_SLD.JPG)
+
+__Estilo Departamentos__
+
+<?xml version="1.0" encoding="UTF-8"?>
+<StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1.0" xmlns:se="http://www.opengis.net/se" xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.1.0/StyledLayerDescriptor.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ogc="http://www.opengis.net/ogc">
+  <NamedLayer>
+    <se:Name>u2_departamentos</se:Name>
+    <UserStyle>
+      <se:Name>u2_departamentos</se:Name>
+      <se:FeatureTypeStyle>
+        <se:Rule>
+          <se:Name>Single symbol</se:Name>
+          <se:LineSymbolizer>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#674310</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">2</se:SvgParameter>
+              <se:SvgParameter name="stroke-linejoin">bevel</se:SvgParameter>
+              <se:SvgParameter name="stroke-linecap">square</se:SvgParameter>
+            </se:Stroke>
+          </se:LineSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:TextSymbolizer>
+            <se:Label>
+              <ogc:PropertyName>nombre</ogc:PropertyName>
+            </se:Label>
+            <se:Font>
+              <se:SvgParameter name="font-family">Arial</se:SvgParameter>
+              <se:SvgParameter name="font-size">11</se:SvgParameter>
+            </se:Font>
+            <se:LabelPlacement>
+              <se:PointPlacement>
+                <se:AnchorPoint>
+                  <se:AnchorPointX>0</se:AnchorPointX>
+                  <se:AnchorPointY>0.5</se:AnchorPointY>
+                </se:AnchorPoint>
+              </se:PointPlacement>
+            </se:LabelPlacement>
+            <se:Fill>
+              <se:SvgParameter name="fill">#000000</se:SvgParameter>
+            </se:Fill>
+            <se:VendorOption name="maxDisplacement">1</se:VendorOption>
+          </se:TextSymbolizer>
+        </se:Rule>
+      </se:FeatureTypeStyle>
+    </UserStyle>
+  </NamedLayer>
+</StyledLayerDescriptor>
+
+__Estilo Departamentos con la cantidad de Hayazgos_
+
+<?xml version="1.0" encoding="UTF-8"?>
+<StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1.0" xmlns:se="http://www.opengis.net/se" xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.1.0/StyledLayerDescriptor.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ogc="http://www.opengis.net/ogc">
+  <NamedLayer>
+    <se:Name>u2_dept_arq</se:Name>
+    <UserStyle>
+      <se:Name>u2_dept_arq</se:Name>
+      <se:FeatureTypeStyle>
+        <se:Rule>
+          <se:Name>2 - 10</se:Name>
+          <se:Description>
+            <se:Title>2 - 10</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:And>
+              <ogc:PropertyIsGreaterThanOrEqualTo>
+                <ogc:PropertyName>cuenta</ogc:PropertyName>
+                <ogc:Literal>2</ogc:Literal>
+              </ogc:PropertyIsGreaterThanOrEqualTo>
+              <ogc:PropertyIsLessThanOrEqualTo>
+                <ogc:PropertyName>cuenta</ogc:PropertyName>
+                <ogc:Literal>10</ogc:Literal>
+              </ogc:PropertyIsLessThanOrEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#d7191c</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#232323</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">1</se:SvgParameter>
+              <se:SvgParameter name="stroke-linejoin">bevel</se:SvgParameter>
+            </se:Stroke>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:Name>10 - 25</se:Name>
+          <se:Description>
+            <se:Title>10 - 25</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:And>
+              <ogc:PropertyIsGreaterThan>
+                <ogc:PropertyName>cuenta</ogc:PropertyName>
+                <ogc:Literal>10</ogc:Literal>
+              </ogc:PropertyIsGreaterThan>
+              <ogc:PropertyIsLessThanOrEqualTo>
+                <ogc:PropertyName>cuenta</ogc:PropertyName>
+                <ogc:Literal>25</ogc:Literal>
+              </ogc:PropertyIsLessThanOrEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#fdae61</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#232323</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">1</se:SvgParameter>
+              <se:SvgParameter name="stroke-linejoin">bevel</se:SvgParameter>
+            </se:Stroke>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:Name>25 - 45</se:Name>
+          <se:Description>
+            <se:Title>25 - 45</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:And>
+              <ogc:PropertyIsGreaterThan>
+                <ogc:PropertyName>cuenta</ogc:PropertyName>
+                <ogc:Literal>25</ogc:Literal>
+              </ogc:PropertyIsGreaterThan>
+              <ogc:PropertyIsLessThanOrEqualTo>
+                <ogc:PropertyName>cuenta</ogc:PropertyName>
+                <ogc:Literal>45</ogc:Literal>
+              </ogc:PropertyIsLessThanOrEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#ffffbf</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#232323</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">1</se:SvgParameter>
+              <se:SvgParameter name="stroke-linejoin">bevel</se:SvgParameter>
+            </se:Stroke>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:Name>45 - 125</se:Name>
+          <se:Description>
+            <se:Title>45 - 125</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:And>
+              <ogc:PropertyIsGreaterThan>
+                <ogc:PropertyName>cuenta</ogc:PropertyName>
+                <ogc:Literal>45</ogc:Literal>
+              </ogc:PropertyIsGreaterThan>
+              <ogc:PropertyIsLessThanOrEqualTo>
+                <ogc:PropertyName>cuenta</ogc:PropertyName>
+                <ogc:Literal>125</ogc:Literal>
+              </ogc:PropertyIsLessThanOrEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#abdda4</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#232323</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">1</se:SvgParameter>
+              <se:SvgParameter name="stroke-linejoin">bevel</se:SvgParameter>
+            </se:Stroke>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+        <se:Rule>
+          <se:Name>123 - 1747</se:Name>
+          <se:Description>
+            <se:Title>123 - 1747</se:Title>
+          </se:Description>
+          <ogc:Filter xmlns:ogc="http://www.opengis.net/ogc">
+            <ogc:And>
+              <ogc:PropertyIsGreaterThan>
+                <ogc:PropertyName>cuenta</ogc:PropertyName>
+                <ogc:Literal>125</ogc:Literal>
+              </ogc:PropertyIsGreaterThan>
+              <ogc:PropertyIsLessThanOrEqualTo>
+                <ogc:PropertyName>cuenta</ogc:PropertyName>
+                <ogc:Literal>1747</ogc:Literal>
+              </ogc:PropertyIsLessThanOrEqualTo>
+            </ogc:And>
+          </ogc:Filter>
+          <se:PolygonSymbolizer>
+            <se:Fill>
+              <se:SvgParameter name="fill">#2b83ba</se:SvgParameter>
+            </se:Fill>
+            <se:Stroke>
+              <se:SvgParameter name="stroke">#232323</se:SvgParameter>
+              <se:SvgParameter name="stroke-width">1</se:SvgParameter>
+              <se:SvgParameter name="stroke-linejoin">bevel</se:SvgParameter>
+            </se:Stroke>
+          </se:PolygonSymbolizer>
+        </se:Rule>
+      </se:FeatureTypeStyle>
+    </UserStyle>
+  </NamedLayer>
+</StyledLayerDescriptor>
+
+__Estilo de los puntos localizados de los Hallazgos__
+
+<?xml version="1.0" encoding="UTF-8"?>
+<StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1.0" xmlns:se="http://www.opengis.net/se" xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.1.0/StyledLayerDescriptor.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ogc="http://www.opengis.net/ogc">
+  <NamedLayer>
+    <se:Name>u2_sitarq_anla_wgs84</se:Name>
+    <UserStyle>
+      <se:Name>u2_sitarq_anla_wgs84</se:Name>
+      <se:FeatureTypeStyle>
+        <se:Rule>
+          <se:Name>Single symbol</se:Name>
+          <se:PointSymbolizer>
+            <se:Graphic>
+              <se:Mark>
+                <se:WellKnownName>circle</se:WellKnownName>
+                <se:Fill>
+                  <se:SvgParameter name="fill">#db1e2a</se:SvgParameter>
+                </se:Fill>
+                <se:Stroke>
+                  <se:SvgParameter name="stroke">#801119</se:SvgParameter>
+                  <se:SvgParameter name="stroke-width">1</se:SvgParameter>
+                </se:Stroke>
+              </se:Mark>
+              <se:Size>7</se:Size>
+            </se:Graphic>
+          </se:PointSymbolizer>
+        </se:Rule>
+      </se:FeatureTypeStyle>
+    </UserStyle>
+  </NamedLayer>
+</StyledLayerDescriptor>
+
+
 
 ## Nombres de las tablas creadas en postgis
 
@@ -49,8 +298,23 @@ ON u2_dept_arq USING GIST (geom);
 * u2_dept_arq
 
 ## Nombres de las capas y estilos publicadas en geoserver.
+  
+   __Capa-postgres__                      __Estilo__                          __Capa-GeoServer__       
+* u2_departamentos                    u2_estilo_departamento                  Departamentos 
+* u2_sitarq_anla_wgs84                u2_estilo_sitarq_anla_wgs84             Hallazgos    
+* u2_dept_arq                         u2_estilo_dept_arq                      Departamento arqueologico
+
 ## Url de la previsualización del grupo de capas en Geoserver
+
+Url: http://34.83.176.208:18080/geoserver/clase/wms?service=WMS&version=1.1.0&request=GetMap&layers=clase%3AArqueologico&bbox=-81.73579%2C-4.22788%2C-66.8473281860352%2C13.3948106765747&width=648&height=768&srs=EPSG%3A4326&format=application/openlayers
+
+
 ## Pantallazos con la forma en que los usuarios pueden consultar su geoservicio a través de QGIS
+
+![img2](IMAGENES/tabla_sitios_arq.JPG)
+
+WMS: http://34.83.176.208:18080/geoserver/clase/wms?service=WMS&version=1.1.0&request=GetMap&layers=clase%3AArqueologico&bbox=-81.73579%2C-4.22788%2C-66.8473281860352%2C13.3948106765747&width=648&height=768&srs=EPSG%3A4326&format=geojson
+
 ## Ventajas / desventajas / dificultades encontradas durante el proceso
 
 En la capa inicial se tenia un total de 6599 registros, pero solo se logro subir 3000 registros
@@ -97,3 +361,5 @@ C:\PROGRA1\QGIS31.4\apps\Python37\lib\site-packages\Pythonwin
 C:/Users/LENOVO/AppData/Roaming/QGIS/QGIS3\profiles\default/python
 C:/Users/LENOVO/AppData/Roaming/QGIS/QGIS3\profiles\default/python/plugins\qgis2web
 C:\Users\LENOVO\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins
+
+![img2](IMAGENES/Error cargue shp.JPG)
