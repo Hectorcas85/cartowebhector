@@ -299,10 +299,20 @@ __Estilo de los puntos localizados de los Hallazgos__
 
 ## Nombres de las capas y estilos publicadas en geoserver.
 
-   __Capa-postgres__                      __Estilo__                          __Capa-GeoServer__       
-* u2_departamentos                    u2_estilo_departamento                  Departamentos 
-* u2_sitarq_anla_wgs84                u2_estilo_sitarq_anla_wgs84             Hallazgos    
-* u2_dept_arq                         u2_estilo_dept_arq                      Departamento arqueologico
+__Capa-postgres__                                                      
+* u2_departamentos                                       
+* u2_sitarq_anla_wgs84                                 
+* u2_dept_arq                                               
+
+__Estilo__ 
+* u2_estilo_departamento
+* u2_estilo_sitarq_anla_wgs84
+* u2_estilo_dept_arq
+
+__Capa-GeoServer__
+* Departamentos
+* Hallazgos
+* Departamento arqueologico
 
 ## Url de la previsualización del grupo de capas en Geoserver
 
