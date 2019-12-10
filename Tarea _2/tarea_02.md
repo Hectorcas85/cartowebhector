@@ -17,7 +17,7 @@ El ICANH, mediante el Grupo de Arqueología y sus otras dependencias asesora a l
 
 __Atributos Tabla__
 
-![img2](IMAGENES/tabla_sitios arq.JPG)
+![img2](IMAGENES/tabla_sitios_arq.JPG)
 
 Fuente: https://www.icanh.gov.co/
 
