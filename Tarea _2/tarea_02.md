@@ -104,7 +104,7 @@ __Estilo Departamentos__
 </StyledLayerDescriptor>
 
 
-__Estilo Departamentos con la cantidad de Hayazgos_
+__Estilo Departamentos con la cantidad de Hayazgos__
 
 
 <?xml version="1.0" encoding="UTF-8"?>
@@ -259,9 +259,7 @@ __Estilo Departamentos con la cantidad de Hayazgos_
   </NamedLayer>
 </StyledLayerDescriptor>
 
-
 __Estilo de los puntos localizados de los Hallazgos__
-
 
 <?xml version="1.0" encoding="UTF-8"?>
 <StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1.0" xmlns:se="http://www.opengis.net/se" xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.1.0/StyledLayerDescriptor.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ogc="http://www.opengis.net/ogc">
@@ -293,8 +291,6 @@ __Estilo de los puntos localizados de los Hallazgos__
   </NamedLayer>
 </StyledLayerDescriptor>
 
-
-
 ## Nombres de las tablas creadas en postgis
 
 * u2_departamentos
@@ -302,7 +298,7 @@ __Estilo de los puntos localizados de los Hallazgos__
 * u2_dept_arq
 
 ## Nombres de las capas y estilos publicadas en geoserver.
-  
+
    __Capa-postgres__                      __Estilo__                          __Capa-GeoServer__       
 * u2_departamentos                    u2_estilo_departamento                  Departamentos 
 * u2_sitarq_anla_wgs84                u2_estilo_sitarq_anla_wgs84             Hallazgos    
@@ -312,10 +308,19 @@ __Estilo de los puntos localizados de los Hallazgos__
 
 Url: http://34.83.176.208:18080/geoserver/clase/wms?service=WMS&version=1.1.0&request=GetMap&layers=clase%3AArqueologico&bbox=-81.73579%2C-4.22788%2C-66.8473281860352%2C13.3948106765747&width=648&height=768&srs=EPSG%3A4326&format=application/openlayers
 
-
 ## Pantallazos con la forma en que los usuarios pueden consultar su geoservicio a través de QGIS
 
-![img2](IMAGENES/tabla_sitios_arq.JPG)
+1. Creamos una conexion nueva al servicio:
+
+![img2](IMAGENES/qgis_WMS1.jpg)
+
+2. Definimos los detalles de la conexion con la Url suministrada abajo.
+
+![img2](IMAGENES/qgis_WMS2.jpg)
+
+3. Luego de establecer la conexion, seleccionamos para que se agregue al Qgis el servicio Hallazgos Arqueologicos Col
+
+![img2](IMAGENES/qgis_WMS3.jpg)
 
 WMS: http://34.83.176.208:18080/geoserver/clase/wms?service=WMS&version=1.1.0&request=GetMap&layers=clase%3AArqueologico&bbox=-81.73579%2C-4.22788%2C-66.8473281860352%2C13.3948106765747&width=648&height=768&srs=EPSG%3A4326&format=geojson
 
