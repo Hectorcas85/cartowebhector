@@ -13,6 +13,14 @@ La incorporacion de servicios WMTS ya que son muchos puntos identificados a lo l
 
 ## Descripción de los datos seleccionados (Origen, descripción, características especiales, atributos, url para descarga)
 
+El ICANH, mediante el Grupo de Arqueología y sus otras dependencias asesora a las autoridades locales, regionales, distritales y municipales en la difícil labor de preservar los yacimientos arqueológicos y los bienes muebles extraídos de esos sitios y que conforman el Patrimonio Arqueológico de la Nación
+
+__Atributos Tabla__
+
+![img1](IMAGENES/tabla_sitios arq.JPG)
+
+Fuente: https://www.icanh.gov.co/
+
 ## Descripción del procesamiento realizado con postgis (Incluir los sqls)
 
 Se crea una capa o tabla espacial en postgis con el siguiente SQL para saber cuántos hallazgos se encontraron en cada departamento:
@@ -25,7 +33,7 @@ from u2_sitarq_anla_wgs84 u2_sit,u2_departamentos u2_dept
 where ST_Within(u2_sit.geom,u2_dept.geom)
 group by departamento) unir
 join u2_departamentos
-on unir.departamento = u2_departamentos.nombre);
+on unir.departamento = u2_departamentos.nombre);__
 
 Se genera un indice espacial a la tabla creada:
 
@@ -38,7 +46,7 @@ ON u2_dept_arq USING GIST (geom);
 
 * u2_departamentos
 * u2_sitarq_anla_wgs84
-* u2_parques_nnc
+* u2_dept_arq
 
 ## Nombres de las capas y estilos publicadas en geoserver.
 ## Url de la previsualización del grupo de capas en Geoserver
