@@ -51,7 +51,7 @@ ON u2_dept_arq USING GIST (geom);
 
 2. Al estar ya configurado guardamos el estilo como SLD
 
-![img2](IMAGENES/guardar_estilo.JPG)
+![img2](IMAGENES/guardar_estilo.jpg)
 
 ![img2](IMAGENES/Estilo_SLD.JPG)
 
@@ -362,4 +362,4 @@ C:/Users/LENOVO/AppData/Roaming/QGIS/QGIS3\profiles\default/python
 C:/Users/LENOVO/AppData/Roaming/QGIS/QGIS3\profiles\default/python/plugins\qgis2web
 C:\Users\LENOVO\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins
 
-![img2](IMAGENES/Error cargue shp.JPG)
+![img2](IMAGENES/Error_cargue_shp.JPG)
