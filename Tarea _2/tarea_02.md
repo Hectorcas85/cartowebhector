@@ -25,11 +25,11 @@ Fuente: https://www.icanh.gov.co/
 
 __Subimos las capas con el administrador de bases de datos que tiene el Qgis.__
 
-![img2](IMAGENES/subir capas a postgres.JPG)
+![img2](IMAGENES/subir_capas_postgres.JPG)
 
 1. Se crea una capa o tabla espacial en postgis con el siguiente SQL para saber cuántos hallazgos se encontraron en cada departamento:
 
-’’’sql
+'''sql
 create table u2_dept_arq as (
 select id, departamento, cuenta, codigo, geom 
 from(
@@ -39,7 +39,8 @@ where ST_Within(u2_sit.geom,u2_dept.geom)
 group by departamento) unir
 join u2_departamentos
 on unir.departamento = u2_departamentos.nombre);
-’’’
+'''
+
 2. Se genera un indice espacial a todas las tablas creadas, en este caso el que se acaba de crear:
 
 CREATE INDEX sidx_u2deptarq_geom 
