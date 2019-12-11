@@ -25,10 +25,11 @@ Fuente: https://www.icanh.gov.co/
 
 __Subimos las capas con el administrador de bases de datos que tiene el Qgis.__
 
-![img2](IMAGENES/subir capas a postgres.JPG)
+![img2](IMAGENES/subir_capas_postgres.JPG)
 
-Se crea una capa o tabla espacial en postgis con el siguiente SQL para saber cuántos hallazgos se encontraron en cada departamento:
+1. Se crea una capa o tabla espacial en postgis con el siguiente SQL para saber cuántos hallazgos se encontraron en cada departamento:
 
+```sql
 create table u2_dept_arq as (
 select id, departamento, cuenta, codigo, geom 
 from(
@@ -37,9 +38,10 @@ from u2_sitarq_anla_wgs84 u2_sit,u2_departamentos u2_dept
 where ST_Within(u2_sit.geom,u2_dept.geom)
 group by departamento) unir
 join u2_departamentos
-on unir.departamento = u2_departamentos.nombre);__
+on unir.departamento = u2_departamentos.nombre);
+```
 
-Se genera un indice espacial a todas las tablas creadas, en este caso el que se acaba de crear:
+2. Se genera un indice espacial a todas las tablas creadas, en este caso el que se acaba de crear:
 
 CREATE INDEX sidx_u2deptarq_geom 
 ON u2_dept_arq USING GIST (geom);
@@ -51,12 +53,13 @@ ON u2_dept_arq USING GIST (geom);
 
 2. Al estar ya configurado guardamos el estilo como SLD
 
-![img2](IMAGENES/guardar_estilo.JPG)
+![img2](IMAGENES/guardar_estilo.jpg)
 
 ![img2](IMAGENES/Estilo_SLD.JPG)
 
 __Estilo Departamentos__
 
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1.0" xmlns:se="http://www.opengis.net/se" xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.1.0/StyledLayerDescriptor.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ogc="http://www.opengis.net/ogc">
   <NamedLayer>
@@ -102,9 +105,11 @@ __Estilo Departamentos__
     </UserStyle>
   </NamedLayer>
 </StyledLayerDescriptor>
+```
 
-__Estilo Departamentos con la cantidad de Hayazgos_
+__Estilo Departamentos con la cantidad de Hayazgos__
 
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1.0" xmlns:se="http://www.opengis.net/se" xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.1.0/StyledLayerDescriptor.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ogc="http://www.opengis.net/ogc">
   <NamedLayer>
@@ -256,9 +261,11 @@ __Estilo Departamentos con la cantidad de Hayazgos_
     </UserStyle>
   </NamedLayer>
 </StyledLayerDescriptor>
+```
 
 __Estilo de los puntos localizados de los Hallazgos__
 
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1.0" xmlns:se="http://www.opengis.net/se" xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.1.0/StyledLayerDescriptor.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ogc="http://www.opengis.net/ogc">
   <NamedLayer>
@@ -288,8 +295,7 @@ __Estilo de los puntos localizados de los Hallazgos__
     </UserStyle>
   </NamedLayer>
 </StyledLayerDescriptor>
-
-
+```
 
 ## Nombres de las tablas creadas en postgis
 
@@ -298,20 +304,39 @@ __Estilo de los puntos localizados de los Hallazgos__
 * u2_dept_arq
 
 ## Nombres de las capas y estilos publicadas en geoserver.
-  
-   __Capa-postgres__                      __Estilo__                          __Capa-GeoServer__       
-* u2_departamentos                    u2_estilo_departamento                  Departamentos 
-* u2_sitarq_anla_wgs84                u2_estilo_sitarq_anla_wgs84             Hallazgos    
-* u2_dept_arq                         u2_estilo_dept_arq                      Departamento arqueologico
+
+__Capa-postgres__                                                      
+* u2_departamentos                                       
+* u2_sitarq_anla_wgs84                                 
+* u2_dept_arq                                               
+
+__Estilo__ 
+* u2_estilo_departamento
+* u2_estilo_sitarq_anla_wgs84
+* u2_estilo_dept_arq
+
+__Capa-GeoServer__
+* Departamentos
+* Hallazgos
+* Departamento arqueologico
 
 ## Url de la previsualización del grupo de capas en Geoserver
 
 Url: http://34.83.176.208:18080/geoserver/clase/wms?service=WMS&version=1.1.0&request=GetMap&layers=clase%3AArqueologico&bbox=-81.73579%2C-4.22788%2C-66.8473281860352%2C13.3948106765747&width=648&height=768&srs=EPSG%3A4326&format=application/openlayers
 
-
 ## Pantallazos con la forma en que los usuarios pueden consultar su geoservicio a través de QGIS
 
-![img2](IMAGENES/tabla_sitios_arq.JPG)
+1. Creamos una conexion nueva al servicio:
+
+![img2](IMAGENES/qgis_WMS1.jpg)
+
+2. Definimos los detalles de la conexion con la Url suministrada abajo.
+
+![img2](IMAGENES/qgis_WMS2.jpg)
+
+3. Luego de establecer la conexion, seleccionamos para que se agregue al Qgis el servicio Hallazgos Arqueologicos Col
+
+![img2](IMAGENES/qgis_WMS3.jpg)
 
 WMS: http://34.83.176.208:18080/geoserver/clase/wms?service=WMS&version=1.1.0&request=GetMap&layers=clase%3AArqueologico&bbox=-81.73579%2C-4.22788%2C-66.8473281860352%2C13.3948106765747&width=648&height=768&srs=EPSG%3A4326&format=geojson
 
@@ -362,4 +387,4 @@ C:/Users/LENOVO/AppData/Roaming/QGIS/QGIS3\profiles\default/python
 C:/Users/LENOVO/AppData/Roaming/QGIS/QGIS3\profiles\default/python/plugins\qgis2web
 C:\Users\LENOVO\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins
 
-![img2](IMAGENES/Error cargue shp.JPG)
+![img2](IMAGENES/Error_cargue_shp.JPG)
