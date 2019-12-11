@@ -29,7 +29,7 @@ __Subimos las capas con el administrador de bases de datos que tiene el Qgis.__
 
 1. Se crea una capa o tabla espacial en postgis con el siguiente SQL para saber cuántos hallazgos se encontraron en cada departamento:
 
-'''sql
+```sql
 create table u2_dept_arq as (
 select id, departamento, cuenta, codigo, geom 
 from(
@@ -39,7 +39,7 @@ where ST_Within(u2_sit.geom,u2_dept.geom)
 group by departamento) unir
 join u2_departamentos
 on unir.departamento = u2_departamentos.nombre);
-'''
+```
 
 2. Se genera un indice espacial a todas las tablas creadas, en este caso el que se acaba de crear:
 
@@ -59,6 +59,7 @@ ON u2_dept_arq USING GIST (geom);
 
 __Estilo Departamentos__
 
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1.0" xmlns:se="http://www.opengis.net/se" xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.1.0/StyledLayerDescriptor.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ogc="http://www.opengis.net/ogc">
   <NamedLayer>
@@ -104,11 +105,11 @@ __Estilo Departamentos__
     </UserStyle>
   </NamedLayer>
 </StyledLayerDescriptor>
-
+```
 
 __Estilo Departamentos con la cantidad de Hayazgos__
 
-
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1.0" xmlns:se="http://www.opengis.net/se" xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.1.0/StyledLayerDescriptor.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ogc="http://www.opengis.net/ogc">
   <NamedLayer>
@@ -260,9 +261,11 @@ __Estilo Departamentos con la cantidad de Hayazgos__
     </UserStyle>
   </NamedLayer>
 </StyledLayerDescriptor>
+```
 
 __Estilo de los puntos localizados de los Hallazgos__
 
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1.0" xmlns:se="http://www.opengis.net/se" xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.1.0/StyledLayerDescriptor.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ogc="http://www.opengis.net/ogc">
   <NamedLayer>
@@ -292,6 +295,7 @@ __Estilo de los puntos localizados de los Hallazgos__
     </UserStyle>
   </NamedLayer>
 </StyledLayerDescriptor>
+```
 
 ## Nombres de las tablas creadas en postgis
 
