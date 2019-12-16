@@ -10,6 +10,15 @@ Por medio de la presentación logra motivar y concientizar a organismos estatale
 
 Datos tipo punto del repositorio de ARCGIS ONLINE, información publicada con nombre de la capa: Localización_de_Volcanes_Colombia por lili@n@gu@ldron7_geoapps sin metadatos adjuntos - Sistema de referencia: WGS84.
 
+__Campos:__
+
+* FID (type: esriFieldTypeOID, alias: FID, SQL Type: sqlTypeInteger, length: 0, nullable: false, editable: false)
+* OBJECTID (type: esriFieldTypeInteger, alias: OBJECTID, SQL Type: sqlTypeInteger, nullable: true, editable: true)
+* COD_ACTIVI (type: esriFieldTypeInteger, alias: COD_ACTIVI, SQL Type: sqlTypeInteger, nullable: true, editable: true)
+* NOM_VOLCAN (type: esriFieldTypeString, alias: NOM_VOLCAN, SQL Type: sqlTypeNVarchar, length: 30, nullable: true, editable: true)
+* ESTADO_AC (type: esriFieldTypeString, alias: ESTADO_AC, SQL Type: sqlTypeNVarchar, length: 30, nullable: true, editable: true)
+* DESCRIPCIO (type: esriFieldTypeString, alias: DESCRIPCIO, SQL Type: sqlTypeNVarchar, length: 100, nullable: true, editable: true)
+
 URL: https://www.arcgis.com/home/item.html?id=7dd18c0b8ea94fb3918a873ae4eef72b
 
 ##Descripción del procesamiento realizado a los datos (ejm: transformaciones, filtros, geoprocesamiento, sql's de postgis, etc)
