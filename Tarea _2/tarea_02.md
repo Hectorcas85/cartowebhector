@@ -43,8 +43,10 @@ on unir.departamento = u2_departamentos.nombre);
 
 2. Se genera un indice espacial a todas las tablas creadas, en este caso el que se acaba de crear:
 
+```sql
 CREATE INDEX sidx_u2deptarq_geom 
 ON u2_dept_arq USING GIST (geom);
+```
 
 ## Descripción de la forma en que creó la simbología (incluir los sld's y css)
 1. En Qgis definimos la simbologia del shape, ingresando a propiedades
